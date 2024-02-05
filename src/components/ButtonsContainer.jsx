@@ -1,5 +1,6 @@
+import PropTypes from "prop-types";
 import styles from "./ButtonsContainer.module.css";
-const ButtonsContainer = () => {
+const ButtonsContainer = ({ onButtonClick }) => {
   const buttonNames = [
     "C",
     "1",
@@ -21,10 +22,20 @@ const ButtonsContainer = () => {
   ];
   return (
     <div className={styles.buttonContainer}>
-      {buttonNames.map((buttonNames)  => (
-        <button key={buttonNames} className ={styles.button}>{buttonNames} </button>
+      {buttonNames.map((buttonName) => (
+        <button
+          key={buttonNames}
+          className={styles.button}
+          onClick={()=>onButtonClick(buttonName)}
+        >
+          {buttonName}
+        </button>
       ))}
     </div>
   );
 };
+ButtonsContainer.propTypes = {
+  onButtonClick: PropTypes.func.isRequired,
+};
+
 export default ButtonsContainer;
